@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  backend:
+    container_name: backend
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app
+    env_file: 
+      - docker-compose.env
+    command: npm run dev
+    ports:
+      - 8000:8000
+    networks:
+      - api
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    networks:
+      - api
+    expose:
+      - "5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file: 
+      - docker-compose.env
+    ports:
+      - 5432:5432
+
+networks:
+  api:
+
+volumes:
+  pgdata:
+
+

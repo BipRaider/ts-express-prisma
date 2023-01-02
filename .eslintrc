@@ -1,0 +1,91 @@
+ {
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "tsconfig.json",
+		"tsconfigRootDir": "./",
+		"sourceType": "module"
+	},
+	"plugins": ["@typescript-eslint/eslint-plugin"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking"
+	],
+	"root": true,
+	"env": {
+		"node": true,
+		"jest": true
+	},
+	"ignorePatterns": [".eslintrc"],
+	"rules": {
+		"@typescript-eslint/no-unsafe-assignment": 1,
+		"@typescript-eslint/interface-name-prefix": "off",
+		"@typescript-eslint/explicit-function-return-type": 1,
+		"@typescript-eslint/explicit-module-boundary-types": 1,
+		"@typescript-eslint/no-empty-function": [2, { "allow": ["arrowFunctions"] }],
+		"@typescript-eslint/no-non-null-assertion": 1,
+		"@typescript-eslint/no-var-requires": 1,
+		"@typescript-eslint/prefer-for-of": 2,
+		"@typescript-eslint/prefer-optional-chain": 2,
+		"@typescript-eslint/unbound-method": "off",
+		"@typescript-eslint/prefer-as-const": 2,
+		"@typescript-eslint/no-explicit-any": [1, { "ignoreRestArgs": false }],
+		"@typescript-eslint/no-unsafe-call": 1,
+		"@typescript-eslint/restrict-template-expressions": [
+			1,
+			{
+				"allowNumber": true,
+				"allowBoolean": true,
+				"allowAny": true,
+				"allowNullish": true,
+				"allowRegExp": true
+			}
+		],
+		"@typescript-eslint/no-unused-vars": [ 1, { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_"}],
+		"@typescript-eslint/no-misused-promises": [
+			2,
+			{
+				"checksVoidReturn": false,
+				"checksConditionals": false
+			}
+		],
+		"typescript-eslint/no-floating-promises": 0,
+		//eslint option
+
+		//prettier
+		"prettier/prettier": [
+			1,
+			{
+				"trailingComma": "all",
+				"arrowParens": "avoid",
+				"printWidth": 120,
+				"useTabs": false,
+				"semi": true,
+				"singleQuote": true,
+				"bracketSpacing": true,
+				"jsxBracketSameLine": false,
+				"proseWrap": "always",
+				"endOfLine": "auto",
+				"jsxSingleQuote": false,
+				"quoteProps": "as-needed",
+				"tabWidth": 2
+			},
+			{
+				"usePrettierrc": true,
+				"fileInfoOptions": {
+					"withNodeModules": true
+				}
+			}
+		]
+	},
+	"overrides": [
+		{
+			// enable the rule specifically for TypeScript files
+			"files": ["src/**/*.guard.ts", "src/**/*.strategy.ts", "src/**/*.decorator.ts"],
+			"rules": {
+				"@typescript-eslint/explicit-function-return-type": "off"
+			}
+		}
+	]
+}
